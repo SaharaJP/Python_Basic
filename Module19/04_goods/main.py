@@ -24,4 +24,18 @@ store = {
     ],
 }
 
-# TODO здесь писать код
+
+for good_name in goods:
+    way = store[goods[good_name]]
+    quantity = 0
+    total_price = 0
+
+    for num in range(len(way)):
+        quantity = way[num]['quantity']
+        total_price += way[num]['price'] * quantity
+
+    print('{0} - {1} штук, стоимость {2} рубля'.format(
+        good_name,
+        quantity,
+        total_price)
+    )
