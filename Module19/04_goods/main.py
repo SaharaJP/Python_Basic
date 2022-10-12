@@ -31,8 +31,8 @@ for good_name in goods:
     total_price = 0
 
     for num in range(len(way)):
-        quantity = way[num]['quantity']
-        total_price += way[num]['price'] * quantity
+        quantity += way[num]['quantity']
+        total_price += way[num]['price'] * way[num]['quantity']
 
     print('{0} - {1} штук, стоимость {2} рубля'.format(
         good_name,
