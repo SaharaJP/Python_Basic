@@ -1,14 +1,13 @@
-def summ(*args):
+def summ(*args, res = [0]):
     for i_el in args:
-        if isinstance(i_el, int):
-            return i_el
 
-        for j_el in i_el:
-            result = summ(j_el)
-            if result:
-                res.append(result)
+        if not isinstance(i_el, int):
+            for j_el in i_el:
+                result = summ(j_el)
 
+        else:
+            res[0] += i_el
 
-res = []
-summ([[1, 2, [3]], [1], 3])
-print(sum(res))
+    return res[0]
+
+# print(summ(1, 2, 3, 4, 5))
