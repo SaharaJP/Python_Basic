@@ -10,3 +10,5 @@ for num in range(1, count + 2):
         line = line.replace('\n', '')
 
     print(line)
+
+zen.close()
