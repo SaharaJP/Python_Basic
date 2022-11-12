@@ -1,5 +1,5 @@
 def first_tour_add_info():
-    first_tour = open('first_tour.txt', 'a', encoding = 'utf-8')
+    first_tour = open('first_tour.txt', 'w', encoding = 'utf-8')
     first_tour.write(input('Введите минимальный порог баллов для прохода во второй тур: ') + '\n')
     count = int(input('Введите число участников: '))
 
@@ -10,7 +10,7 @@ def first_tour_add_info():
 
 def second_tour_add_info():
     first_tour = open('first_tour.txt', 'r', encoding = 'utf-8')
-    second_tour = open('second_tour.txt', 'a', encoding = 'utf-8')
+    second_tour = open('second_tour.txt', 'w', encoding = 'utf-8')
 
     min_score = int(first_tour.readline())
     max_scores = [0]
