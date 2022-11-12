@@ -49,6 +49,7 @@ def second_tour_answer(count, max_scores):
                       participant_dict[0], participant_dict[2]
                       )
 
+    second_tour.close()
 
 first_tour_add_info()
 count, max_scores = second_tour_add_info()
