@@ -47,7 +47,7 @@ try:
             if f2(int(nums_list[0]), int(nums_list[1])):
                 res2 = f2(int(nums_list[0]), int(nums_list[1]))
 
-        except BaseException:
+        except ZeroDivisionError:
             print('Во второй функции функции произошло деление на "0" \n'
                   'Можно продолжить, приняв значение равное "0". \n')
             res2 = error_mess()
