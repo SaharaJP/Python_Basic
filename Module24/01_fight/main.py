@@ -1,1 +1,3 @@
-# TODO здесь писать код
+from fight_class import Fight
+
+battle = Fight()
