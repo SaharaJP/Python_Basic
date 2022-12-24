@@ -53,7 +53,7 @@ class Gardener:
 
     def collect(self):
         if not self.garden.are_all_ripe():
-            self.garden_count += 1
+            Gardener.garden_count += 1
             self.bag[self.garden_count] = self.potato_index
         else:
             print('Картошка еще не созрела!\n')
@@ -66,3 +66,7 @@ b = Gardener('Andrew', 5)
 b.collect()
 b.garden_care()
 b.collect()
+
+c = Gardener('Andrew', 7)
+c.garden_care()
+c.collect()
