@@ -43,6 +43,7 @@ class Black_Jack:
         if take_a_card == 'y':
             self.player.card_distribution()
             self.hand_info()
+            return True
         else:
             return False
 

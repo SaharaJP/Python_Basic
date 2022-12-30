@@ -38,16 +38,19 @@ class Player:
     def get_card_value(self):
         suit, character, available_lenght = self.generate_random()
 
-        if available_lenght > 1:
+        try:
+            if available_lenght > 1:
+                card_value = Deck.full_deck[suit][character].pop(random.randint(0, available_lenght))
+            elif available_lenght == 1:
+                card_value = Deck.full_deck[suit][character].pop()
+            elif available_lenght == 0:
+                card_value = self.get_card_value()
+                return card_value
+        except IndexError:
             card_value = Deck.full_deck[suit][character].pop(random.randint(0, available_lenght))
-        elif available_lenght == 1:
-            card_value = Deck.full_deck[suit][character].pop()
-        elif available_lenght == 0:
-            card_value = self.get_card_value()
-            return card_value
 
         if (card_value == 11) and (self.total_value + card_value > 21):
-            card_value == 1
+            return suit, character, 1
 
         return suit, character, card_value
 
@@ -62,7 +65,12 @@ class Player:
             suit, character, card_value = self.get_card_value()
             Player.total_value += card_value
 
-            self.player_hand.append((suit, character, card_value))
+            for card in Player.player_hand:
+                if Player.total_value > 21 and card[2] == 11:
+                    Player.total_value -= card_value
+                    card[2] = 1
+
+            self.player_hand.append([suit, character, card_value])
 
 
 class Dealer:
@@ -79,16 +87,19 @@ class Dealer:
     def get_card_value(self):
         suit, character, available_lenght = self.generate_random()
 
-        if available_lenght > 1:
+        try:
+            if available_lenght > 1:
+                card_value = Deck.full_deck[suit][character].pop(random.randint(0, available_lenght))
+            elif available_lenght == 1:
+                card_value = Deck.full_deck[suit][character].pop()
+            elif available_lenght == 0:
+                card_value = self.get_card_value()
+                return card_value
+        except IndexError:
             card_value = Deck.full_deck[suit][character].pop(random.randint(0, available_lenght))
-        elif available_lenght == 1:
-            card_value = Deck.full_deck[suit][character].pop()
-        elif available_lenght == 0:
-            card_value = self.get_card_value()
-            return card_value
 
         if (card_value == 11) and (self.total_value + card_value > 21):
-            card_value == 1
+            return suit, character, 1
 
         return suit, character, card_value
 
@@ -97,4 +108,4 @@ class Dealer:
             suit, character, card_value = self.get_card_value()
             Dealer.total_value += card_value
 
-            self.dealer_hand.append((suit, character, card_value))
+            self.dealer_hand.append([suit, character, card_value])
