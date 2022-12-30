@@ -3,9 +3,9 @@ from attributes import Deck, Player, Dealer
 class Black_Jack:
     suits = ['Черви', 'Бубны', 'Пики', 'Трефы']
     characters = {0 : 'Цифры', 1 : 'Валет', 2 : 'Дама', 3 : 'Король', 4 : 'Туз'}
-    deck = Deck()
 
     def __init__(self):
+        self.deck = Deck()
         self.deck.deck_initialize()
         self.player = Player(input('Введите имя: '))
         self.dealer = Dealer()
