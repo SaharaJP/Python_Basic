@@ -1,4 +1,5 @@
 from typing import Callable
+import functools
 
 
 def how_are_you(func: Callable) -> Callable:
@@ -7,6 +8,7 @@ def how_are_you(func: Callable) -> Callable:
     выводит выводит ответ как дела у него
     """
 
+    @functools.wraps(func)
     def wraped(*args, **kwargs) -> int:
         input('Как дела? ')
         print('А у меня не очень! Ладно, держи свою функцию.')
