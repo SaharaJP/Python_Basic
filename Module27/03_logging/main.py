@@ -1,6 +1,8 @@
 from typing import Callable
 import functools
 import datetime
+import sys
+
 
 def logging(func: Callable) -> Callable:
     """Декоратор. Отвечает за логирование функций"""
@@ -10,7 +12,7 @@ def logging(func: Callable) -> Callable:
         with open('function_errors.log', 'a') as errors:
             try:
                 func()
-            except ZeroDivisionError:
+            except Exception:
                 print(
                     '{name} - {document}\n'.format(
                         name=func.__name__,
@@ -21,7 +23,7 @@ def logging(func: Callable) -> Callable:
                     '{time}\t{name}\t{error}\n'.format(
                         time=str(datetime.datetime.now()),
                         name=func.__name__,
-                        error=str(ZeroDivisionError)
+                        error=sys.exc_info()[1].__class__.__name__
                     )
                 )
     return wr_log
@@ -36,7 +38,7 @@ def math_error():
 def math_error_2():
     """Функция, вызывающая ошибку деления на 0"""
 
-    raise ZeroDivisionError
+    raise IndexError
 
 
 math_error()
