@@ -1,6 +1,3 @@
-
-
-
 class File:
     def __init__(self, file_name: str, type: str = 'w') -> None:
         self.__file_name = file_name
