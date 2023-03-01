@@ -1,13 +1,22 @@
+from typing import Dict
 import json
 
 
-def main_func(a, b):
+def diff_func(new: Dict, old: Dict) -> None:
+    """
+    Функция, добавляющая в пустой словарь
+    различающиеся в двух непустых словарях
+    искомые параметры
 
-    for key, val in a.items():
-        if key in diff_list and a[key] != b[key]:
+    :param new: dict: новый словарь
+    :param old: dict: старый словарь
+    """
+
+    for key, val in new.items():
+        if key in diff_list and new[key] != old[key]:
             diff_dict[key] = val
         elif isinstance(val, dict):
-            main_func(a[key], b[key])
+            diff_func(new[key], old[key])
 
 
 diff_list = ["services", "staff", "datetime"]
@@ -19,7 +28,7 @@ with open('result.json', 'w') as result,\
     old_j = json.load(old)
     diff_dict = dict()
 
-    main_func(new_j, old_j)
+    diff_func(new_j, old_j)
     print(diff_dict)
 
     json.dump(diff_dict, result, indent=4)

@@ -7,20 +7,47 @@ req = requests.get('https://swapi.dev/api/starships/10/')
 data = json.loads(req.text)
 
 
-def pilot_data_printer(pilot_info) -> None:
+def pilot_data_printer(pilot_info: Dict) -> None:
+    """
+    Функция
+    Выводит информацию о пилоте
+
+    :param pilot_info: dict: информация о пилоте
+    """
+
     for key, value in pilot_info.items():
         print('{0}: {1}'.format(key, value))
     print()
 
 
-def homeworld_data(homeworld) -> str:
+def homeworld_data(homeworld: str) -> str:
+    """
+    Функция
+    Принимает в виде строки ссылку
+    на данные о родной планете пилота
+    и возвращает ее название
+
+    :param homeworld: str: ссылка
+    :return str: название планеты
+    """
+
     homeworld_req = requests.get(homeworld)
     homeworld_data = json.loads(homeworld_req.text)
 
     return homeworld_data['name']
 
 
-def pilots_data(pilot) -> Dict:
+def pilots_data(pilot: str) -> Dict:
+    """
+    Функция
+    Принимает в виде строки ссылку
+    на информацию о пилоте
+    и возвращает их в виде словаря
+
+    :param pilot: str: ссылка
+    :return _data: dict: информация о пилоте
+    """
+
     pilots_parameters = ['name', 'height', 'mass']
     _data = dict()
 
@@ -39,6 +66,13 @@ def pilots_data(pilot) -> Dict:
 
 
 def ship_data() -> Dict:
+    """
+    Функция
+    По искомым параметрам добавляет в новый словарь данные о корабле
+
+    :return _data: dict: вся информация о корабле
+    """
+
     ship_parameters = ['name', 'max_atmosphering_speed', 'starship_class']
     _data = dict()
 
